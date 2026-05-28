@@ -67,7 +67,7 @@ export function registerCopyStructureFromContextCommand(
       await vscode.env.clipboard.writeText(tree);
 
       vscode.window.showInformationMessage(
-        `PyPoints: Estructura de "${targetName}" copiada al portapapeles`
+        `ArchView: Estructura de "${targetName}" copiada al portapapeles`
       );
     }
   );

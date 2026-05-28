@@ -1,34 +1,29 @@
 {
   "name": "archview",
-  "displayName": "ArchView - Project Explorer & AI Context",
-  "description": "Professional project explorer and AI context builder. Map structure, select files, optimize tokens, and visualize architecture for Flask, FastAPI, Django, Node, and more.",
-  "version": "1.0.0",
+  "displayName": "ArchView – AI Context Builder & Project Structure Explorer",
+  "description": "Build AI context fast. Map your project structure, select files, optimize tokens, and copy code for Claude, Copilot, ChatGPT, or any LLM. Built for Flask, FastAPI, Django, Node, and more.",
+  "version": "0.1.0",
   "publisher": "christian-dev",
   "license": "MIT",
   "keywords": [
-    "project structure",
-    "file explorer",
     "ai context",
+    "project structure",
     "token optimizer",
+    "file explorer",
+    "claude",
+    "copilot",
+    "llm",
     "architecture",
-    "python",
-    "flask",
-    "fastapi",
-    "django",
-    "copy structure",
-    "clipboard",
-    "productivity",
-    "backend tools"
+    "productivity"
   ],
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
-    "Programming Languages",
     "Visualization",
     "Other"
   ],
-  "icon": "media/logotipo_v4.png",
+  "icon": "media/logotipo-v5.png",
   "galleryBanner": {
     "color": "#0D1117",
     "theme": "dark"
@@ -37,6 +32,10 @@
     "type": "git",
     "url": "https://github.com/ChristianUtria/ArchView.git"
   },
+  "bugs": {
+    "url": "https://github.com/ChristianUtria/ArchView/issues"
+  },
+  "homepage": "https://github.com/ChristianUtria/ArchView#readme",
   "qna": "marketplace",
   "activationEvents": [
     "onView:archview.main",
@@ -53,7 +52,7 @@
         {
           "id": "archviewExplorer",
           "title": "ArchView",
-          "icon": "media/brujula.svg"
+          "icon": "media/estructura_icon.svg"
         }
       ]
     },
