@@ -102,11 +102,33 @@ One-click command that applies the active optimization profile to all files in y
 ArchView is model-agnostic. The output is plain text you can paste anywhere: Claude, ChatGPT, Gemini, Copilot Chat, Cursor, or any other AI tool. The Claude integration is optional and only needed for the *Summarize* feature.
 
 ---
-
 ## Supported Project Types
 
-Flask, FastAPI, Django, Node.js, Express, TypeScript, React, Vue, and any other project structure VS Code can open.
+ArchView works with almost any project structure that Visual Studio Code can open.
 
+### Fully Supported
+- Flask
+- FastAPI
+- Django
+- Node.js
+- Express
+- TypeScript
+- React
+- Vue
+- Next.js
+- NestJS
+- Electron
+
+### Also Compatible With
+- Python projects
+- Java projects
+- PHP projects
+- Monorepos
+- Full-stack applications
+- Static websites
+- Game development projects
+- AI/ML repositories
+- Any custom folder structure
 ---
 
 ## License
