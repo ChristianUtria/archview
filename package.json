@@ -2,7 +2,7 @@
   "name": "archview",
   "displayName": "ArchView – AI Context Builder & Project Structure Explorer",
   "description": "Build AI context fast. Map your project structure, select files, optimize tokens, and copy code for Claude, Copilot, ChatGPT, or any LLM. Built for Flask, FastAPI, Django, Node, and more.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "christian-dev",
   "license": "MIT",
   "keywords": [
@@ -103,7 +103,11 @@
         },
         "archview.defaultProfile": {
           "type": "string",
-          "enum": ["fast", "balanced", "ai_max"],
+          "enum": [
+            "fast",
+            "balanced",
+            "ai_max"
+          ],
           "default": "balanced",
           "description": "Default optimization profile for the AI Context panel.",
           "enumDescriptions": [
