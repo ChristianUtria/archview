@@ -1,0 +1,341 @@
+{
+  "name": "archview",
+  "displayName": "ArchView - Project Explorer & AI Context",
+  "description": "Professional project explorer and AI context builder. Map structure, select files, optimize tokens, and visualize architecture for Flask, FastAPI, Django, Node, and more.",
+  "version": "1.0.0",
+  "publisher": "christian-dev",
+  "license": "MIT",
+  "keywords": [
+    "project structure",
+    "file explorer",
+    "ai context",
+    "token optimizer",
+    "architecture",
+    "python",
+    "flask",
+    "fastapi",
+    "django",
+    "copy structure",
+    "clipboard",
+    "productivity",
+    "backend tools"
+  ],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Visualization",
+    "Other"
+  ],
+  "icon": "media/logotipo_v4.png",
+  "galleryBanner": {
+    "color": "#0D1117",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChristianUtria/ArchView.git"
+  },
+  "qna": "marketplace",
+  "activationEvents": [
+    "onView:archview.main",
+    "onView:archview.structure",
+    "onView:archview.treeView",
+    "onCommand:archview.showStructure",
+    "onCommand:archview.showProjectTree",
+    "onCommand:archview.copyStructureFromContext"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "archviewExplorer",
+          "title": "ArchView",
+          "icon": "media/brujula.svg"
+        }
+      ]
+    },
+    "views": {
+      "explorer": [
+        {
+          "id": "archview.structure",
+          "name": "ArchView: Project Structure",
+          "type": "webview",
+          "visibility": "visible"
+        }
+      ],
+      "archviewExplorer": [
+        {
+          "id": "archview.main",
+          "name": "Files",
+          "type": "webview",
+          "visibility": "visible"
+        },
+        {
+          "id": "archview.structure",
+          "name": "Project Structure",
+          "type": "webview",
+          "visibility": "visible"
+        },
+        {
+          "id": "archview.treeView",
+          "name": "AI Context",
+          "type": "tree",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ArchView",
+      "properties": {
+        "archview.anthropicApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Anthropic API key for Claude summarization (✨ AI button in the Files panel).",
+          "markdownDescription": "Your [Anthropic API key](https://console.anthropic.com/settings/keys). Required for the **✨ AI (Claude)** button. Stored in your local VS Code settings."
+        },
+        "archview.claudeApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Anthropic API key for the AI Context panel (Summarize with Claude, Optimize & Copy).",
+          "markdownDescription": "Your [Anthropic API key](https://console.anthropic.com/settings/keys) for **AI Context** → *Summarize with Claude*. `archview.anthropicApiKey` also works."
+        },
+        "archview.defaultProfile": {
+          "type": "string",
+          "enum": ["fast", "balanced", "ai_max"],
+          "default": "balanced",
+          "description": "Default optimization profile for the AI Context panel.",
+          "enumDescriptions": [
+            "Fast: removes comments, blank lines, and extra spaces",
+            "Balanced: Fast + compact JSON, pattern detection, truncation",
+            "AI Max: Balanced + log summarization, aggressive compression"
+          ]
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "archview.showStructure",
+        "title": "ArchView: Refresh Project Structure",
+        "icon": "media/structure-icon.svg"
+      },
+      {
+        "command": "archview.copyStructureFromContext",
+        "title": "ArchView: Copy Project Structure"
+      },
+      {
+        "command": "archview.showProjectTree",
+        "title": "ArchView: 🌳 Show Project Tree",
+        "icon": "$(type-hierarchy)"
+      },
+      {
+        "command": "archview.addFileToContext",
+        "title": "Add to ArchView Context",
+        "category": "ArchView",
+        "icon": "$(add)"
+      },
+      {
+        "command": "archview.removeFileFromContext",
+        "title": "Remove from Context",
+        "category": "ArchView",
+        "icon": "$(remove)"
+      },
+      {
+        "command": "archview.clearSelection",
+        "title": "Clear Selection",
+        "category": "ArchView",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "archview.copyFiles",
+        "title": "Copy Selected Files",
+        "category": "ArchView",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "archview.optimizeAndCopy",
+        "title": "Optimize & Copy",
+        "category": "ArchView",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "archview.summarizeFiles",
+        "title": "Summarize with Claude",
+        "category": "ArchView",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "archview.previewOptimization",
+        "title": "Preview Optimization",
+        "category": "ArchView",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "archview.excludeFile",
+        "title": "Exclude from Context",
+        "category": "ArchView",
+        "icon": "$(circle-slash)"
+      },
+      {
+        "command": "archview.includeFile",
+        "title": "Include in Context",
+        "category": "ArchView",
+        "icon": "$(check)"
+      },
+      {
+        "command": "archview.clearExclusions",
+        "title": "Clear All Exclusions",
+        "category": "ArchView"
+      },
+      {
+        "command": "archview.analyzeFile",
+        "title": "Analyze Token Usage",
+        "category": "ArchView",
+        "icon": "$(graph)"
+      },
+      {
+        "command": "archview.copyOptimized",
+        "title": "Copy Optimized",
+        "category": "ArchView",
+        "icon": "$(copy)"
+      },
+      {
+        "command": "archview.analyzeDependencies",
+        "title": "Analyze Dependencies",
+        "category": "ArchView",
+        "icon": "$(references)"
+      },
+      {
+        "command": "archview.showTokenUsage",
+        "title": "Show Token Usage",
+        "category": "ArchView",
+        "icon": "$(symbol-number)"
+      },
+      {
+        "command": "archview.selectProfile",
+        "title": "Select Optimization Profile",
+        "category": "ArchView",
+        "icon": "$(settings-gear)"
+      },
+      {
+        "command": "archview.setProfile",
+        "title": "Set Optimization Profile",
+        "category": "ArchView"
+      },
+      {
+        "command": "archview.openFile",
+        "title": "Open File",
+        "category": "ArchView"
+      }
+    ],
+    "menus": {
+      "explorer/title": [
+        {
+          "command": "archview.showStructure",
+          "group": "navigation@1",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "archview.showProjectTree",
+          "group": "navigation@2",
+          "when": "workspaceFolderCount > 0"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "archview.copyStructureFromContext",
+          "group": "5_cutcopypaste@99",
+          "when": "workspaceFolderCount > 0"
+        },
+        {
+          "command": "archview.addFileToContext",
+          "group": "5_cutcopypaste@100",
+          "when": "!explorerResourceIsFolder"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "archview.showStructure",
+          "when": "view == archview.structure",
+          "group": "navigation"
+        },
+        {
+          "command": "archview.optimizeAndCopy",
+          "when": "view == archview.treeView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "archview.clearSelection",
+          "when": "view == archview.treeView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "archview.selectProfile",
+          "when": "view == archview.treeView",
+          "group": "navigation@3"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "archview.copyOptimized",
+          "when": "view == archview.treeView && viewItem == archview.fileItem",
+          "group": "archview@1"
+        },
+        {
+          "command": "archview.previewOptimization",
+          "when": "view == archview.treeView && viewItem == archview.fileItem",
+          "group": "archview@2"
+        },
+        {
+          "command": "archview.analyzeFile",
+          "when": "view == archview.treeView && viewItem == archview.fileItem",
+          "group": "archview@3"
+        },
+        {
+          "command": "archview.showTokenUsage",
+          "when": "view == archview.treeView && viewItem == archview.fileItem",
+          "group": "archview@4"
+        },
+        {
+          "command": "archview.excludeFile",
+          "when": "view == archview.treeView && viewItem == archview.fileItem",
+          "group": "archview@5"
+        },
+        {
+          "command": "archview.analyzeDependencies",
+          "when": "view == archview.treeView && viewItem == archview.fileItem",
+          "group": "archview@6"
+        },
+        {
+          "command": "archview.removeFileFromContext",
+          "when": "view == archview.treeView && viewItem == archview.fileItem",
+          "group": "archview_remove@1"
+        },
+        {
+          "command": "archview.includeFile",
+          "when": "view == archview.treeView && viewItem == archview.excludedItem",
+          "group": "archview@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "@vscode/vsce": "^3.0.0",
+    "eslint": "^8.0.0"
+  }
+}
